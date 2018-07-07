@@ -30,4 +30,17 @@ public class KafkaClient {
         return properties;
     }
 
+    public static Properties getDefaultKafkaConsumerProperties(String brokers, String groupId, String valueDeserializer) {
+        Properties properties = new Properties();
+        properties.put("bootstrap.servers", brokers);
+        properties.put("group.id", groupId);
+        properties.put("enable.auto.commit", "true");
+        properties.put("auto.commit.interval.ms", "1000");
+        properties.put("session.timeout.ms", "30000");
+        properties.put("auto.offset.reset", "earliest");
+        properties.put("key.deserializer", StringDeserializer.class.getName());
+        properties.put("value.deserializer", valueDeserializer);
+        return properties;
+    }
+
 }
