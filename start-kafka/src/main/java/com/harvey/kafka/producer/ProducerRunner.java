@@ -50,6 +50,7 @@ public class ProducerRunner implements Runnable {
                 e.printStackTrace();
             }
             logger.info("end sending message to kafka");
+            logger.info("harvey test");
 
             if (i >= 100)
                 break;

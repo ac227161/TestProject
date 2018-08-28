@@ -11,10 +11,10 @@ public class StartConsumerThread {
 
     public static void main(String[] args) {
         Thread producerThread = new Thread(new ProducerRunner(brokers, topic));
-        //producerThread.start();
+        producerThread.start();
 
-        ConsumerThreadPool consumer = new ConsumerThreadPool(brokers, groupId, topic);
-        consumer.start();
+//        ConsumerThreadPool consumer = new ConsumerThreadPool(brokers, groupId, topic);
+//        consumer.start();
     }
 
 }
