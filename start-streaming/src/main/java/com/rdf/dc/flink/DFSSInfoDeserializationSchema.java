@@ -21,8 +21,6 @@ public class DFSSInfoDeserializationSchema implements KeyedDeserializationSchema
         if (message != null) {
             try {
                 String json = new String(message, this.encoding);
-                System.out.println(json);
-                System.out.println(String.format("%s %s", partition, offset));
                 // protobuf JsonFormat can't handle the value "null" of list type json key
                 json = json.replaceAll("\"StateList\"\\s*:\\s*null", "\"StateList\":[]");
                 DFSSInfoProtos.DFSSInfo.Builder builder = DFSSInfoProtos.DFSSInfo.newBuilder();

@@ -4,7 +4,7 @@ import java.util.Properties
 
 import com.rdf.dc.flink.DFSSInfoDeserializationSchema
 import com.rdf.dc.protobuf.DFSSInfoProtos
-import org.apache.flink.api.common.serialization.SimpleStringSchema
+import com.twitter.chill.protobuf.ProtobufSerializer
 import org.apache.flink.api.scala._
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.windowing.time.Time
@@ -14,6 +14,8 @@ object KafkaConnectorDemo {
 
   def main(args: Array[String]): Unit = {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
+    env.registerTypeWithKryoSerializer(classOf[DFSSInfoProtos.DFSSInfo], classOf[ProtobufSerializer])
+
     val properties = new Properties
     properties.setProperty("bootstrap.servers", "192.168.5.103:9092,192.168.5.104:9092,192.168.5.105:9092")
     properties.setProperty("group.id", "group-flink-test")
