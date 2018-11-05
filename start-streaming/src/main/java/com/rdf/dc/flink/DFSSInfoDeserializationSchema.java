@@ -25,6 +25,11 @@ public class DFSSInfoDeserializationSchema implements KeyedDeserializationSchema
                 json = json.replaceAll("\"StateList\"\\s*:\\s*null", "\"StateList\":[]");
                 DFSSInfoProtos.DFSSInfo.Builder builder = DFSSInfoProtos.DFSSInfo.newBuilder();
                 jsonFormat.merge(json, ExtensionRegistry.getEmptyRegistry(), builder);
+                DFSSInfoProtos.Metadata.Builder metadataBuilder = DFSSInfoProtos.Metadata.newBuilder();
+                metadataBuilder.setTopic(topic);
+                metadataBuilder.setPartition(partition);
+                metadataBuilder.setOffset(offset);
+                builder.setMetadata(metadataBuilder.build());
                 dfssInfo = builder.build();
             } catch (Exception ioe) {
                 throw new RuntimeException("JsonFormat parse failed: " + ioe.getMessage());
