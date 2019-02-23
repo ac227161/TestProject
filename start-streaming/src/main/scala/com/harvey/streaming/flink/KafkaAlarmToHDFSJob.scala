@@ -18,7 +18,7 @@ object KafkaAlarmToHDFSJob {
 
   def main(args: Array[String]): Unit = {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
-    env.enableCheckpointing(300 * 1000)
+    env.enableCheckpointing(60000)
 
     val properties = new Properties
     properties.setProperty("bootstrap.servers", "192.168.5.103:9092,192.168.5.104:9092,192.168.5.105:9092")
@@ -31,8 +31,8 @@ object KafkaAlarmToHDFSJob {
     val sink = new BucketingSink[String](rootAlarmPath)
     sink.setBucketer(new DateTimeBucketer[String]("yyyyMMddHH", ZoneId.of("Asia/Shanghai")))
     sink.setWriter(new StringWriter[String]())
-    sink.setBatchSize(1024 * 1024 * 100)
-    sink.setBatchRolloverInterval(60 * 1000)
+    sink.setBatchSize(1024 * 1024 * 100) // 100M
+    sink.setBatchRolloverInterval(300 * 1000)
 
     env.addSource(consumer).map(m => {
       val alarm = m.getAlarm
