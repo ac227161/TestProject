@@ -1,0 +1,210 @@
+option java_package = "com.rdf.dc.protobuf";
+
+option java_outer_classname = "DFSSInfoProtos";
+
+option java_generic_services = true;
+
+option java_generate_equals_and_hash = true;
+
+option optimize_for = SPEED;
+
+
+message DFSSInfo {
+    optional XMLName XMLName = 1;
+    optional string ProcessKey = 2;
+    optional string DevID = 3;
+    optional int64 DevItnlID = 4;
+    optional int64 VehicleItnlID = 5;
+    optional int64 DriverItnlID = 6;
+    optional string SimNo = 7;
+    optional string PlateNo = 8;
+    optional int64 DepID = 9;
+    optional string TimeZone = 10;
+    optional string MediaPath = 11;
+    optional Alarm Alarm = 12;
+    optional Capture Capture = 13;
+    repeated State StateList = 14;
+    optional Metadata Metadata = 15;
+}
+
+message XMLName {
+    optional string Space = 1;
+    optional string Local = 2;
+}
+
+message Alarm {
+    optional string AlertType = 1;
+    optional int32 AlertTypeID = 2;
+    optional int32 Level = 3;
+    optional int64 TimeStamp = 4;
+    optional float Speed = 5;
+    optional float VuarSpeed = 6;
+    optional float OriGPSSpeed = 7;
+    optional float GsensorSpeed = 8;
+    optional Position Position = 9;
+    optional Picture Picture = 10;
+    optional Movie Movie = 11;
+}
+
+message Capture {
+    optional string CaptureType = 1;
+    optional int32 CaptureTypeID = 2;
+    optional int64 TimeStamp = 3;
+    optional Position Position = 4;
+    optional float Speed = 5;
+    optional float VuarSpeed = 6;
+    optional float OriGPSSpeed = 7;
+    optional float GsensorSpeed = 8;
+    optional Picture Picture = 9;
+    optional FaceLandmark FaceLandmark = 10;
+    optional FaceBoundBox FaceBoundBox = 11;
+    optional bool IsWearSunglasses = 12;
+    optional bool IsWearGlasses = 13;
+}
+
+message State {
+    optional int64 TimeStamp = 1;
+    optional int32 MileAge = 2;
+    optional string TireTemp = 3;
+    optional string TirePressure = 4;
+    optional int32 Brake = 5;
+    optional int32 ACC = 6;
+    optional int32 GSMSig = 7;
+    optional float Speed = 8;
+    optional float VuarSpeed = 9;
+    optional float OriGPSSpeed = 10;
+    optional float GsensorSpeed = 11;
+    optional Position Position = 12;
+}
+
+message Position {
+    optional string Address = 1;
+    optional string Province = 2;
+    optional string City = 3;
+    optional bool GPSValid = 4;
+    optional int32 Stars = 5;
+    optional float Lat = 6;
+    optional float Lon = 7;
+    optional float Alt = 8;
+    optional float Angle = 9;
+    optional int32 ACC = 10;
+    optional int32 GSMSig = 11;
+}
+
+message Picture {
+    optional string Name = 1;
+    optional string PictureData = 2;
+}
+
+message Movie {
+    optional string Name = 1;
+    optional string MovieData = 2;
+}
+
+message FaceLandmark {
+    optional Point NoseBridge = 1;
+    optional Point NoseApex = 2;
+    optional Point LeftEyeLeftCorner = 3;
+    optional Point LeftEyeRightCorner = 4;
+    optional Point RightEyeLeftCorner = 5;
+    optional Point RightEyeRightCorner = 6;
+    optional Point MouthLeftCorner = 7;
+    optional Point MouthRightCorner = 8;
+}
+
+message FaceBoundBox {
+    optional Point Start = 1;
+    optional Point End = 2;
+}
+
+message Point {
+    optional int32 X = 1;
+    optional int32 Y = 2;
+}
+
+message GPSRealtime {
+    optional int32 vehicleId = 1;
+    optional string status = 2;
+    optional int32 depId = 3;
+    optional int32 signalState = 4;
+    optional int64 onlineDate = 5;
+    optional int64 responseSn = 6;
+    optional string alarmState = 7;
+    optional int64 parkingTime = 8;
+    optional int64 tiredAlarmTime = 9;
+    optional string plateNo = 10;
+    optional int32 areaId = 11;
+    optional int32 areaAlarm = 12;
+    optional int32 areaType = 13;
+    optional int32 overSpeedAreaId = 14;
+    optional int32 overSpeedAreaType = 15;
+    optional int32 routeSegmentId = 16;
+    optional int32 runTimeOnRoute = 17;
+    optional int32 routeAlarmType = 18;
+    optional string simNo = 19;
+    optional string location = 20;
+    optional int64 sendTime = 21;
+    optional int64 updateDate = 22;
+    optional float longitude = 23;
+    optional float latitude = 24;
+    optional float velocity = 25;
+    optional int32 direction = 26;
+    optional float altitude = 27;
+    optional float recordVelocity = 28;
+    optional float gas = 29;
+    optional float mileage = 30;
+    optional string dvrStatus = 31;
+    optional bool online = 32;
+    optional int32 id = 33;
+}
+
+message CaptureFace {
+    optional string deviceNumbber = 1;
+    optional int32 deviceId = 2;
+    optional int32 vehicleId = 3;
+    optional int32 depId = 4;
+    optional string processKey = 5;
+    optional string timezone = 6;
+    optional int64 actionTime = 7;
+    optional string actionDay = 8;
+    optional string actionHour = 9;
+    optional int32 captureTypeId = 10;
+    optional int32 mediaTypeId = 11;
+    optional int32 mediaFormatId = 12;
+    optional bool gpsIsValid = 13;
+    optional int32 satelliteCount = 14;
+    optional float longitude = 15;
+    optional float latitude = 16;
+    optional int32 angle = 17;
+    optional int32 acc = 18;
+    optional float speed = 19;
+    optional string mediaPath = 20;
+    optional string address = 21;
+    optional string simNo = 22;
+    optional int64 sendTime = 23;
+    optional int64 updateDate = 24;
+    optional string plateNo = 25;
+    optional int64 id = 26;
+    optional Attributes attributes = 27;
+}
+
+message Attributes {
+    optional string noseBridge = 1;
+    optional string noseApex = 2;
+    optional string leftEyeLeftCorner = 3;
+    optional string leftEyeRightCorner = 4;
+    optional string rightEyeLeftCorner = 5;
+    optional string rightEyeRightCorner = 6;
+    optional string mouthLeftCorner = 7;
+    optional string mouthRightCorner = 8;
+    optional string boundingBoxStart = 9;
+    optional string boundingBoxEnd = 10;
+    optional bool isWearSunglasses = 11;
+    optional bool isWearGlasses = 12;
+}
+
+message Metadata {
+    optional string topic = 1;
+    optional int32 partition = 2;
+    optional int64 offset = 3;
+}
